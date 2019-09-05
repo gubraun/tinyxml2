@@ -1,19 +1,18 @@
-# Universal Windows Platform
-# Build a Universal Windows Platform project using Visual Studio.
-# Add steps that test and distribute an app, save build artifacts, and more:
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
 trigger:
 - master
 
 pool:
-  vmImage: 'vs2017-win2016'
+  vmImage: 'ubuntu-latest'
 
-variables:
-  solution: '**/*.sln'
-#  buildPlatform: 'x86|x64|ARM'
-#  buildConfiguration: 'Release'
-#  appxPackageDir: '$(build.artifactStagingDirectory)\AppxPackages\\'
+#container:
+#  image: 'gubraun/coverity:2019.06'
+#  endpoint: gubraun-docker
+#  options: --hostname build-vm --mac-address 02:42:ac:11:00:03
 
 steps:
 #- script: |
@@ -22,29 +21,13 @@ steps:
 #  displayName: 'Configure Coverity'
 
 #- script: cov-build --config coverity_config.xml --dir idir gcc -o hello hello.c
-#  displayName: 'Compile C source file'
-
-- script:
-    msbuild.exe /p:Configuration=Release-Dll $(solution)
+- script: make
+  displayName: 'Compile C source file'
 
 #- script: cov-analyze --dir idir 
 #  displayName: 'Run Coverity analysis'
 
-#- script: |
-#    echo Add other tasks to build, test, and deploy your project.
-#    echo See https://aka.ms/yaml
-#  displayName: 'Run a multi-line script'
-
-#steps:
-#- task: NuGetToolInstaller@1
-
-#- task: NuGetCommand@2
-#  inputs:
-#    restoreSolution: '$(solution)'
-
-#- task: VSBuild@1
-#  inputs:
-#    platform: 'x86'
-#    solution: '$(solution)'
-#    configuration: '$(buildConfiguration)'
-#    msbuildArgs: '/p:AppxBundlePlatforms="$(buildPlatform)" /p:AppxPackageDir="$(appxPackageDir)" /p:AppxBundle=Always /p:UapAppxPackageBuildMode=StoreUpload'
+- script: |
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
+  displayName: 'Run a multi-line script'
