@@ -11,20 +11,40 @@ pool:
 
 variables:
   solution: '**/*.sln'
-  buildPlatform: 'x86|x64|ARM'
-  buildConfiguration: 'Release'
-  appxPackageDir: '$(build.artifactStagingDirectory)\AppxPackages\\'
+#  buildPlatform: 'x86|x64|ARM'
+#  buildConfiguration: 'Release'
+#  appxPackageDir: '$(build.artifactStagingDirectory)\AppxPackages\\'
 
 steps:
-- task: NuGetToolInstaller@1
+#- script: |
+#    cov-analyze --ident
+#    cov-configure --config coverity_config.xml --gcc
+#  displayName: 'Configure Coverity'
 
-- task: NuGetCommand@2
-  inputs:
-    restoreSolution: '$(solution)'
+#- script: cov-build --config coverity_config.xml --dir idir gcc -o hello hello.c
+#  displayName: 'Compile C source file'
 
-- task: VSBuild@1
-  inputs:
-    platform: 'x86'
-    solution: '$(solution)'
-    configuration: '$(buildConfiguration)'
-    msbuildArgs: '/p:AppxBundlePlatforms="$(buildPlatform)" /p:AppxPackageDir="$(appxPackageDir)" /p:AppxBundle=Always /p:UapAppxPackageBuildMode=StoreUpload'
+- script:
+    msbuild /p:Configuration=Release-Dll $(solution)
+
+#- script: cov-analyze --dir idir 
+#  displayName: 'Run Coverity analysis'
+
+#- script: |
+#    echo Add other tasks to build, test, and deploy your project.
+#    echo See https://aka.ms/yaml
+#  displayName: 'Run a multi-line script'
+
+#steps:
+#- task: NuGetToolInstaller@1
+
+#- task: NuGetCommand@2
+#  inputs:
+#    restoreSolution: '$(solution)'
+
+#- task: VSBuild@1
+#  inputs:
+#    platform: 'x86'
+#    solution: '$(solution)'
+#    configuration: '$(buildConfiguration)'
+#    msbuildArgs: '/p:AppxBundlePlatforms="$(buildPlatform)" /p:AppxPackageDir="$(appxPackageDir)" /p:AppxBundle=Always /p:UapAppxPackageBuildMode=StoreUpload'
