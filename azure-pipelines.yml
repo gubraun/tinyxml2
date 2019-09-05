@@ -25,7 +25,7 @@ steps:
 #  displayName: 'Compile C source file'
 
 - script:
-    msbuild /p:Configuration=Release-Dll $(solution)
+    "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Current\Bin\msbuild.exe" "/p:Configuration=Release-Dll" "$(solution)"
 
 #- script: cov-analyze --dir idir 
 #  displayName: 'Run Coverity analysis'
