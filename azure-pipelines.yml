@@ -27,7 +27,7 @@ steps:
 - script: |
    wget https://sipse.polaris.synopsys.com/api/tools/polaris_cli-linux64.zip
    unzip polaris_cli-linux64.zip
-   ./polaris_cli-linux64-1.5.4628/bin/polaris analyze -w
+   ./polaris_cli-linux64-1.5.4628/bin/polaris -c polaris.yml analyze -w
    
 
 #- script: cov-analyze --dir idir 
