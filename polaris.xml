@@ -1,0 +1,18 @@
+version: "1"
+project:
+  name: "GB/tinyxml2"
+  branch: ${scm.git.branch}
+  revision:
+    name: ${scm.git.commit}
+    date: ${scm.git.commit.date}
+capture:
+  build:
+    cleanCommands:
+    - shell: ["make", "clean"]
+    buildCommands:
+    - shell: ["make"]
+install:
+  coverity:
+    version: latest
+
+serverUrl: https://sipse.polaris.synopsys.com
