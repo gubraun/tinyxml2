@@ -23,6 +23,12 @@ steps:
 #- script: cov-build --config coverity_config.xml --dir idir gcc -o hello hello.c
 - script: make
   displayName: 'Compile C source file'
+  
+-script: |
+   wget https://sipse.polaris.synopsys.com/api/tools/polaris_cli-linux64.zip
+   unzip polaris_cli-linux64-1.5.4628.zip
+   ./polaris_cli-linux64-1.5.4628/bin/polaris analyze -w
+   
 
 #- script: cov-analyze --dir idir 
 #  displayName: 'Run Coverity analysis'
