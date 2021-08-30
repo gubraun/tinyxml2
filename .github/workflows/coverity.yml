@@ -8,8 +8,8 @@ on: workflow_dispatch
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  Coverity:
-    # The type of runner that the job will run on
+  analyze:
+    name: Analyze
     runs-on: self-hosted
     env:
       COVERITY_TOOL_HOME: /opt/cov-analysis-linux64-2021.06
